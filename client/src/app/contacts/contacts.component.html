@@ -1,0 +1,37 @@
+<div class="container">
+    <form #f (submit)="addContact()">
+        <div class="form-group">
+            <label for="firstname">First name</label>
+            <input class="form-control" type="text" required id="firstname" name="firstname" [(ngModel)]="first_name">
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last name</label>
+            <input class="form-control" type="text" required id="lastname" name="lastname" [(ngModel)]="last_name">
+        </div>
+        <div class="form-group">
+            <label for="phone_number">Phone</label>
+            <input class="form-control" type="text" required id="phone_number" name="phone_number" [(ngModel)]="phone">
+        </div>
+        <input type="submit" class="btn btn-success" style="margin: 1rem 0" [disabled]="!first_name || !last_name || !phone" value="Add contact"/>
+    </form>
+</div>
+
+
+<div class="container">
+    <div *ngFor="let contact of contacts; let i = index;">
+        <div class="row">
+            <div class="col-sm-3" title="{{ contact.first_name }}" style="overflow-x: hidden; text-overflow: ellipsis;">
+                {{ contact.first_name }}
+            </div>
+            <div class="col-sm-3" title="{{ contact.last_name }}" style="overflow-x: hidden; text-overflow: ellipsis;">
+                {{ contact.last_name }}
+            </div>
+            <div class="col-sm-3" title="{{ contact.phone }}" style="overflow-x: hidden; text-overflow: ellipsis;">
+                {{ contact.phone }}
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-danger" (click)="deleteContact(contact._id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
